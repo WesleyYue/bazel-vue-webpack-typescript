@@ -1,3 +1,3 @@
-import App from "./App.vue";
+import { moduleB } from "./moduleB";
 
-console.log(App);
+console.log(moduleB);
