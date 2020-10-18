@@ -4,7 +4,7 @@
   "repository": "git@github.com:WesleyYue/bazel-vue-webpack-typescript.git",
   "license": "MIT",
   "devDependencies": {
-    "@bazel/typescript": "1.7.0",
+    "@bazel/typescript": "2.2.0",
     "typescript": "3.8.3",
     "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.12",
@@ -12,6 +12,7 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
+    "http-server": "^0.12.3",
     "vue": "^2.6.12"
   }
 }

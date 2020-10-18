@@ -1,5 +1,6 @@
-load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
 load("@npm//webpack-cli:index.bzl", "webpack_cli")
+load("@npm//http-server:index.bzl", "http_server")
 
 ts_library(
     name = "moduleB_ts",
@@ -22,6 +23,7 @@ filegroup(
     name = "moduleA.js",
     srcs = [
         "moduleA_ts",
+        # "moduleB_ts",
     ],
     output_group = "es6_sources",
 )
@@ -39,7 +41,7 @@ webpack_cli(
         "$@",
         "--mode",
         "development",
-        "--verbose",
+        # "--verbose",
     ],
     data = [
         ":moduleA.js",
@@ -47,4 +49,18 @@ webpack_cli(
         "@npm//:node_modules",
     ],
     visibility = ["//visibility:public"],
+)
+
+# Note, on Windows you need `--enable_runfiles`
+http_server(
+    name = "server",
+    data = [
+        "app.bundle.js",
+        "index.html",
+    ],
+    templated_args = [
+        "-p",
+        "8888",
+        ".",
+    ],
 )

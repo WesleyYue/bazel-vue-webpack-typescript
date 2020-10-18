@@ -1,3 +1,5 @@
 import { moduleB } from "./moduleB";
 
-console.log(moduleB);
+let t = new moduleB();
+t.name = "test";
+console.log(t);
