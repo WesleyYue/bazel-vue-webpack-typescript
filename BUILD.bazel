@@ -1,0 +1,45 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("@npm//webpack-cli:index.bzl", "webpack_cli")
+
+ts_library(
+    name = "moduleA_ts",
+    srcs = [
+        "moduleA.ts",
+        "vue-shims.d.ts",
+    ],
+    deps = [
+        "@npm//vue",
+    ],
+)
+
+filegroup(
+    name = "moduleA.js",
+    srcs = [
+        "App.vue",
+        "moduleA_ts",
+    ],
+    output_group = "es6_sources",
+)
+
+webpack_cli(
+    name = "bundle",
+    outs = [
+        "app.bundle.js",
+    ],
+    args = [
+        "$(locations :moduleA.js)",  # Entry point
+        "--config",
+        "$(execpath :webpack.config.js)",
+        "-o",
+        "$@",
+        "--mode",
+        "development",
+        "--verbose",
+    ],
+    data = [
+        ":moduleA.js",
+        ":webpack.config.js",
+        "@npm//:node_modules",
+    ],
+    visibility = ["//visibility:public"],
+)
