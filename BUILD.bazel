@@ -15,7 +15,6 @@ ts_library(
 filegroup(
     name = "moduleA.js",
     srcs = [
-        "App.vue",
         "moduleA_ts",
     ],
     output_group = "es6_sources",
@@ -37,6 +36,7 @@ webpack_cli(
         "--verbose",
     ],
     data = [
+        ":App.vue",
         ":moduleA.js",
         ":webpack.config.js",
         "@npm//:node_modules",
