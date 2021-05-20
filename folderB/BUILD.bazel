@@ -25,4 +25,5 @@ nodejs_binary(
         ":moduleB_ts",
     ],
     entry_point = ":moduleB.ts",
+    # templated_args = ["--bazel_patch_module_resolver"],
 )
