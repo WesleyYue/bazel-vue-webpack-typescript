@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2015", "ES2016.Array.Include", "DOM"],
+    "module": "commonjs",
+    "target": "ES2015",
+    "composite": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "my_workspace/*": ["*", "bazel-bin/*", "bazel-out/k8-fastbuild/bin/*"]
+    },
+    "rootDirs": [".", "bazel-bin/", "bazel-out/k8-fastbuild/bin/"]
+  }
+}

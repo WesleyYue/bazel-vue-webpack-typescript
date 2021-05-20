@@ -1,5 +1,5 @@
 workspace(
-    name = "vue",
+    name = "my_workspace",
     managed_directories = {"@npm": ["node_modules"]},
 )
 

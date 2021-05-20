@@ -1,0 +1,28 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("@npm//@bazel/typescript:index.bzl", "ts_config", "ts_project")
+
+ts_config(
+    name = "config",
+    src = "tsconfig.json",
+    deps = [
+        "//:tsconfig-base",
+    ],
+)
+
+ts_project(
+    name = "moduleB_ts",
+    srcs = ["moduleB.ts"],
+    composite = True,
+    tsconfig = "config",
+    deps = [
+        "//folderA:tsconfig",
+    ],
+)
+
+nodejs_binary(
+    name = "moduleB",
+    data = [
+        ":moduleB_ts",
+    ],
+    entry_point = ":moduleB.ts",
+)
